@@ -17,9 +17,9 @@ example data: det_coef_row.csv
 WARNING
 ------- 
 
-The program is designed for visualizing time series;
-it actually outputs the graphs of all the time series into files!
-File output may be supressed by --supress (or -s) option. 
+The program is designed for visualizing time series.
+It actually outputs the graphs of all the time series into files!
+File output may be supressed by --suppress (or -s) option. 
 In addition, the classifcation of the time series by names outputs 
 into result.txt file. 
 
