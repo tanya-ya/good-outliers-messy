@@ -9,7 +9,7 @@ where 'well-behaved' either grows linearly or stays roughly constant.
 
 WARNING: the program is designed for visualizing time series;
 it actually outputs the graphs of all the time series into files!
-File output may be supressed by --supress (or -s) option. 
+File output may be suppressed by --suppress (or -s) option. 
 In addition, the classifcation of the time series by names outputs 
 into result.txt file. 
 
@@ -85,7 +85,7 @@ parser.add_argument('DT_threshold', nargs='?', default=0.9, type=float,
                     help='optional: threshold value for DT')
 parser.add_argument('spread_threshold', nargs='?', default=0.1, type=float,
                     help='optional: threshold value for spread')
-parser.add_argument('-s', '--supress', help='to supress plotting', 
+parser.add_argument('-s', '--suppress', help='to suppress plotting', 
                     action='store_true')
 args = parser.parse_args()
 
@@ -100,7 +100,7 @@ print 'spread_threshold = ', spread_threshold
 datapath = os.getcwd()
 path = datapath + '/good-outliers-messy'
 
-if not args.supress: #if not request for supressed output
+if not args.suppress: #if not request for suppressed output
     #try creating good-outliers-messy directory (if doesn't exist)
     try: 
         os.mkdir(path)
@@ -178,7 +178,7 @@ with open(datapath + '/det_coef_row.csv','rb') as csvfile:
         #check if satisfies thresholds; proceed with further analysis otherwise
         if r_value**2>DT_threshold or spread<spread_threshold:
             good.append(name)
-            if not args.supress:
+            if not args.suppress:
                 filename = path + '/good/series' + name + '.jpg'           
                 plot_data(filename, name, 
                           years, datarow, 
@@ -229,7 +229,7 @@ with open(datapath + '/det_coef_row.csv','rb') as csvfile:
             
             if r_value**2 >DT_threshold or spread<spread_threshold:
                 good_with_outliers.append(name)
-                if not args.supress:
+                if not args.suppress:
                     filename = path + '/good_with_outliers/series' + \
                                                      name + '.jpg'              
                     plot_data_with_outliers(filename, name, years, datarow, 
@@ -265,7 +265,7 @@ with open(datapath + '/det_coef_row.csv','rb') as csvfile:
                        or spread2000<spread_threshold: 
                         #removing old data fixes the problem
                         good_with_outliers.append(name)
-                        if not args.supress:
+                        if not args.suppress:
                             filename = path + '/good_with_outliers/series' + \
                                                              name + '.jpg'                        
                             plot_data_with_outliers(filename, name, 
@@ -278,7 +278,7 @@ with open(datapath + '/det_coef_row.csv','rb') as csvfile:
                             
                 #if we are here, removing old data did not help  
                 messy.append(name) 
-                if not args.supress:          
+                if not args.suppress:          
                     filename = path + '/messy/series' + name + '.jpg'
                     plot_data_with_outliers(filename, name, years, datarow, 
                                          slope, intercept, r_value, spread,  
