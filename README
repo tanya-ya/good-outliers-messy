@@ -1,0 +1,65 @@
+Outline
+-------
+
+This program aims to classify time series into 
+good = 'well-behaved', 
+good_with_outliers = 'well-behaved' once outliers are removed, and 
+messy = all the rest,
+where 'well-behaved' either grows linearly or stays roughly constant.
+
+Files
+-----
+
+main program: Good-Outliers-Messy-Classification.py 
+module: plot_data_into_files contains the ploting functions
+example data: det_coef_row.csv 
+
+WARNING
+------- 
+
+The program is designed for visualizing time series;
+it actually outputs the graphs of all the time series into files!
+File output may be supressed by --supress (or -s) option. 
+In addition, the classifcation of the time series by names outputs 
+into result.txt file. 
+
+Data Format
+-----------
+
+The expected data format is a comma-separated .csv with the 
+first row representing time coordinates (e.g., years) and 
+subsequent rows  - the corresponding time series with 
+empty entries for missing values
+The first column is reserved for the names of time series
+e.g,
+,2000,2010
+series1,,152
+series2,125,136
+
+
+The algorithm
+-------------
+
+The algorithm uses:
+Theil-Sen estimator for detecting outliers
+and
+Two criteria for filtering: 
+- the determination coefficient (DT) or R^2 >=0.9 
+- 'spread', a dispersion index-like quantity on the residuals <=0.1
+both criteria can be adjusted by command line prompt, e.g.,
+
+$ python Good-Outliers-Messy-Classification.py 0.7 0.2
+
+in the above example, thresholds DT >= 0.7 and spread <= 0.1 are used
+
+Comment
+-------
+
+The program performs reasonably well with respect to the current data from the
+UNECE statistical database.  
+
+Author
+------
+
+Tatiana Yarmola https://github.com/tanya-ya
+
